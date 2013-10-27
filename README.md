@@ -82,3 +82,9 @@ Handler is an optional function that works the same as in `register` from
 above. If a handler is specified then its return value is returned by the
 loader.
 
+
+## License
+
+MIT, Copyright (C) 2013 by Leaf Corcoran
+
+
