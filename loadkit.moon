@@ -12,6 +12,8 @@ wildcard = escape_pattern wildcard
 modsep = escape_pattern "." -- module name hierarchy separator
 
 make_loader = (ext, handler) ->
+  handler or= (_, _, ...) -> ...
+
   search_paths = for path in package.path\gmatch "[^#{pathsep}]+"
     if p = path\match "^(.-)%.lua$"
       p .. "." .. ext
@@ -39,6 +41,9 @@ make_loader = (ext, handler) ->
 registered_handlers = {}
 
 register = (ext, handler, pos=2) ->
+  assert ext, "missing extension"
+  assert handler, "missing handler"
+
   real_ext = ext\match "^[^:]*"
 
   loader_fn = make_loader real_ext, handler
@@ -49,7 +54,7 @@ register = (ext, handler, pos=2) ->
     if res != nil
       -> res
     else
-      err or "could not load #{real_ext} file"
+      err or "could not load `#{real_ext}` file"
 
   insert loaders!, pos, wrapped_loader
   registered_handlers[ext] = wrapped_loader

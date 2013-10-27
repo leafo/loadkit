@@ -65,9 +65,10 @@ describe "loadkit", ->
       require "spec.tests.thing"
 
     it "should allow loader function to return nil", ->
-      called = 0
+      fn = spy.new ->
+
       assert loadkit.register "leafo", ->
-        called += 1
+        fn!
         nil
 
       assert.has_error ->
@@ -76,7 +77,7 @@ describe "loadkit", ->
       assert.has_error ->
         require "spec.tests.thing"
 
-      assert.same 2, called
+      assert.spy(fn).was_called 2
 
     it "should register multiple loaders", ->
       assert loadkit.register "leafo", -> "leafo"
@@ -112,4 +113,10 @@ describe "loadkit", ->
 
       assert loadkit.unregister "leafo:tagged"
       assert.same "cool", require "spec.tests.thing"
+
+  describe "make_loader", ->
+    it "should find file", ->
+      loader = loadkit.make_loader "cats"
+      assert.same {}, {loader "spec.tests.thing"}
+      assert.same { "./spec/tests/file.cats" }, { loader "spec.tests.file" }
 
