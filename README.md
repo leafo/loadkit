@@ -1,6 +1,6 @@
 # loadkit
 
-Loadkit allows you to load arbitrary files within the Lua search path.
+Loadkit allows you to load arbitrary files within the Lua package path.
 
 ## Example
 

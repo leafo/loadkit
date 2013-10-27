@@ -6,7 +6,7 @@ source = {
 }
 
 description = {
-  summary = "Loadkit allows you to load arbitrary files within the Lua search path",
+  summary = "Loadkit allows you to load arbitrary files within the Lua package path",
   detailed = [[
 		Loadkit lets you register new file extension handlers that can be opened
 		with require, or you can just search for files of any extension using the
