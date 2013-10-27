@@ -11,14 +11,14 @@ escape_pattern = do
 wildcard = escape_pattern wildcard
 modsep = escape_pattern "." -- module name hierarchy separator
 
-insert_loader = (ext, handler, pos=2) ->
+make_loader = (ext, handler) ->
   search_paths = for path in package.path\gmatch "[^#{pathsep}]+"
     if p = path\match "^(.-)%.lua$"
       p .. "." .. ext
     else
       continue
 
-  loader_fn = (name) ->
+  (name) ->
     name_path = name\gsub modsep, dirsep
 
     local file, file_path
@@ -34,22 +34,26 @@ insert_loader = (ext, handler, pos=2) ->
       unless io.type(file) == "closed file"
         file\close!
 
-      if loaded[1] == nil
-        return unpack loaded
-
-      -> unpack loaded
-    else
-      "Could not load #{ext} file"
-
-  insert loaders!, pos, loader_fn
-  loader_fn
+      unpack loaded
 
 registered_handlers = {}
 
-register = (ext, handler) ->
+register = (ext, handler, pos=2) ->
   real_ext = ext\match "^[^:]*"
-  loader_fn = insert_loader real_ext, handler
-  registered_handlers[ext] = loader_fn
+
+  loader_fn = make_loader real_ext, handler
+
+  wrapped_loader = (name) ->
+    res, err = loader_fn name
+
+    if res != nil
+      -> res
+    else
+      err or "could not load #{real_ext} file"
+
+  insert loaders!, pos, wrapped_loader
+  registered_handlers[ext] = wrapped_loader
+
   true
 
 unregister = (ext) ->
@@ -65,4 +69,7 @@ unregister = (ext) ->
 
   nil, "loader `#{ext}` is no longer in searchers"
 
-{ :register, :unregister, _registered_handlers: registered_handlers }
+{
+  :register, :unregister, :make_loader
+  _registered_handlers: registered_handlers
+}
