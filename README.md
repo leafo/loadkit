@@ -22,7 +22,7 @@ Here's an example directory structure:
 
 And then we can run:
 
-```
+```lua
 -- example.lua
 local etlua = require "etlua"
 local loadkit = require "loadkit"
