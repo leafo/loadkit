@@ -40,6 +40,23 @@ The functionality of `require` is unchanged, if the template's module name is
 required again it would return the cached value, avoiding any additional
 searching.
 
+### What's the point?
+
+A project like [MoonScript](http://moonscript.org) uses a technique like this
+to let you load compiled MoonScript as you would load Lua making the
+integration seamless.
+
+Alternatively, if you've ever wanted to bundle different kinds of file assets
+inside of a Lua module but were unsure about how to resolve the correct path to
+open the file you can use this module:
+
+```lua
+local js_loader = loadkit.make_loader("js")
+
+-- find the actual path of your resource
+local fname = js_loader("mymodule.some_script")
+```
+
 ## Reference
 
 The module can be loaded by doing:
