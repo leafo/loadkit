@@ -65,7 +65,7 @@ The module can be loaded by doing:
 local loadkit = require "loadkit"
 ```
 
-### Methods
+### Functions
 
 #### `loadkit.register(ext, handler)`
 
@@ -89,6 +89,10 @@ the module.
 Removes a handler that has already been registered. Returns `true` if found
 handler to remove.
 
+#### `bool = loadkit.is_registered(ext)`
+
+Returns `true` if a loader has already been registered for the extension `ext`.
+
 #### `loader = loadkit.make_loader(ext, [handler])`
 
 Makes a loader without manipulating Lua's module loaders. The return value is a
@@ -102,6 +106,6 @@ loader.
 
 ## License
 
-MIT, Copyright (C) 2013 by Leaf Corcoran
+MIT, Copyright (C) 2014 by Leaf Corcoran
 
 

@@ -118,9 +118,14 @@ unregister = function(ext)
   end
   return nil, "loader `" .. tostring(ext) .. "` is no longer in searchers"
 end
+local is_registered
+is_registered = function(ext)
+  return not not registered_handlers[ext]
+end
 return {
   register = register,
   unregister = unregister,
+  is_registered = is_registered,
   make_loader = make_loader,
   _registered_handlers = registered_handlers
 }

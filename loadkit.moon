@@ -74,7 +74,10 @@ unregister = (ext) ->
 
   nil, "loader `#{ext}` is no longer in searchers"
 
+is_registered = (ext) ->
+  not not registered_handlers[ext]
+
 {
-  :register, :unregister, :make_loader
+  :register, :unregister, :is_registered, :make_loader
   _registered_handlers: registered_handlers
 }

@@ -114,6 +114,14 @@ describe "loadkit", ->
       assert loadkit.unregister "leafo:tagged"
       assert.same "cool", require "spec.tests.thing"
 
+  describe "is_registered", ->
+    it "should return true for registered ext", ->
+      assert loadkit.register "leafo", -> "cool"
+      assert.truthy loadkit.is_registered "leafo"
+
+    it "should return false for registered ext", ->
+      assert.falsy loadkit.is_registered "leafo"
+
   describe "make_loader", ->
     it "should find file", ->
       loader = loadkit.make_loader "cats"
