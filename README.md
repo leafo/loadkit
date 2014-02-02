@@ -2,6 +2,12 @@
 
 Loadkit allows you to load arbitrary files within the Lua package path.
 
+## Install
+
+```bash
+$ luarocks install loadkit
+```
+
 ## Example
 
 [`etlua`](http://github.com/leafo/etlua) is a library that lets you create
