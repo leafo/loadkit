@@ -11,10 +11,10 @@ escape_pattern = do
 wildcard = escape_pattern wildcard
 modsep = escape_pattern "." -- module name hierarchy separator
 
-make_loader = (ext, handler) ->
+make_loader = (ext, handler, load_path=package.path) ->
   handler or= (_, _, ...) -> ...
 
-  search_paths = for path in package.path\gmatch "[^#{pathsep}]+"
+  search_paths = for path in load_path\gmatch "[^#{pathsep}]+"
     if p = path\match "^(.-)%.lua$"
       p .. "." .. ext
     else

@@ -28,7 +28,10 @@ end
 wildcard = escape_pattern(wildcard)
 local modsep = escape_pattern(".")
 local make_loader
-make_loader = function(ext, handler)
+make_loader = function(ext, handler, load_path)
+  if load_path == nil then
+    load_path = package.path
+  end
   handler = handler or function(_, _, ...)
     return ...
   end
@@ -36,7 +39,7 @@ make_loader = function(ext, handler)
   do
     local _accum_0 = { }
     local _len_0 = 1
-    for path in package.path:gmatch("[^" .. tostring(pathsep) .. "]+") do
+    for path in load_path:gmatch("[^" .. tostring(pathsep) .. "]+") do
       local _continue_0 = false
       repeat
         do
