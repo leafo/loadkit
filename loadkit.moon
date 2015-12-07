@@ -1,5 +1,6 @@
 
 import insert, remove from table
+unpack = table.unpack or _G.unpack
 
 dirsep, pathsep, wildcard = unpack [ c for c in package.config\gmatch "[^\n]" ]
 loaders = -> package.loaders or package.searchers

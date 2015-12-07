@@ -3,6 +3,7 @@ do
   local _obj_0 = table
   insert, remove = _obj_0.insert, _obj_0.remove
 end
+local unpack = table.unpack or _G.unpack
 local dirsep, pathsep, wildcard = unpack((function()
   local _accum_0 = { }
   local _len_0 = 1
