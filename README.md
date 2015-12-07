@@ -1,5 +1,7 @@
 # loadkit
 
+[![Build Status](https://travis-ci.org/leafo/loadkit.svg?branch=master)](https://travis-ci.org/leafo/loadkit)
+
 Loadkit allows you to load arbitrary files within the Lua package path.
 
 ## Install
