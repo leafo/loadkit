@@ -1,3 +1,4 @@
+VERSION = "1.1.0"
 
 import insert, remove from table
 unpack = table.unpack or _G.unpack
@@ -79,6 +80,7 @@ is_registered = (ext) ->
   not not registered_handlers[ext]
 
 {
+  :VERSION
   :register, :unregister, :is_registered, :make_loader
   _registered_handlers: registered_handlers
 }

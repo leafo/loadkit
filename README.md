@@ -99,7 +99,7 @@ handler to remove.
 
 Returns `true` if a loader has already been registered for the extension `ext`.
 
-#### `loader = loadkit.make_loader(ext, [handler])`
+#### `loader = loadkit.make_loader(ext, [handler, package_path])`
 
 Makes a loader without manipulating Lua's module loaders. The return value is a
 function that takes a module name and returns the path of the file that matches
@@ -109,6 +109,14 @@ Handler is an optional function that works the same as in `register` from
 above. If a handler is specified then its return value is returned by the
 loader.
 
+`package_path` defaults to the Lua install's `package.path` variable.
+
+# Changelog
+
+**1.1.0 -- Sun Dec  6 17:50:53 PST 2015**
+
+* `make_loader` can operate on a custom package path
+* Support lua 5.2 and above (fix unpack reference)
 
 ## License
 

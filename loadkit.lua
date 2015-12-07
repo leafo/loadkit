@@ -1,3 +1,4 @@
+local VERSION = "1.1.0"
 local insert, remove
 do
   local _obj_0 = table
@@ -127,6 +128,7 @@ is_registered = function(ext)
   return not not registered_handlers[ext]
 end
 return {
+  VERSION = VERSION,
   register = register,
   unregister = unregister,
   is_registered = is_registered,
