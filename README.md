@@ -15,7 +15,7 @@ $ luarocks install loadkit
 [`etlua`](http://github.com/leafo/etlua) is a library that lets you create
 embedded Lua templates. The result of the template is a function that when
 called returns the compiled template. Normally you need to load the template
-and compile the it manually. Let's make it so `require` is aware of `.elua`
+and compile it manually. Let's make it so `require` is aware of `.elua`
 files and returns the compiled template.
 
 
